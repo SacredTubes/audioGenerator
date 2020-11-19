@@ -8,13 +8,13 @@
 	set_location_assignment PIN_AC9 -to audio_pll_0_audio_clk_clk
     set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to audio_pll_0_audio_clk_clk
 
-	set_location_assignment PIN_AH30 -to i2c_ssm26_ip_0_i2c_clk_pin
+	set_location_assignment PIN_AH30 -to i2c_ssm2603_0_i2c_clk_pin
     set_instance_assignment -name IO_STANDARD "2.5 V" -to i2c_ssm2603_0_i2c_clk_pin
 
-	set_location_assignment PIN_AF30 -to i2c_ssm26_ip_0_i2c_data_pin
+	set_location_assignment PIN_AF30 -to i2c_ssm2603_0_i2c_data_pin
     set_instance_assignment -name IO_STANDARD "2.5 V" -to i2c_ssm2603_0_i2c_data_pin
 
-	set_location_assignment PIN_AD26 -to i2c_ssm26_ip_0_muten_pin
+	set_location_assignment PIN_AD26 -to i2c_ssm2603_0_muten_pin
     set_instance_assignment -name IO_STANDARD "2.5 V" -to i2c_ssm2603_0_muten_pin
 
 	set_location_assignment PIN_AC27 -to i2s_ssm2603_0_serial_data_in_pin
