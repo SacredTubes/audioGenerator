@@ -9,7 +9,7 @@
    categories="System" />
  <parameter name="bonusData"><![CDATA[bonusData 
 {
-   element I2C_SSM26_ip_0
+   element I2C_SSM2603_0
    {
       datum _sortIndex
       {
@@ -17,7 +17,15 @@
          type = "int";
       }
    }
-   element I2C_SSM26_ip_0.s_axi
+   element I2C_SSM2603_0.s_axi
+   {
+      datum baseAddress
+      {
+         value = "131072";
+         type = "String";
+      }
+   }
+   element I2C_SSM2603_ip_0.s_axi
    {
       datum baseAddress
       {
@@ -92,22 +100,50 @@
    type="clock"
    dir="start" />
  <interface name="hps_io" internal="hps_0.hps_io" type="conduit" dir="end" />
- <interface name="i2c_ssm26_ip_0_i2c_clk" internal="I2C_SSM26_ip_0.I2C_CLK" />
- <interface name="i2c_ssm26_ip_0_i2c_data" internal="I2C_SSM26_ip_0.I2C_DATA" />
- <interface name="i2c_ssm26_ip_0_muten" internal="I2C_SSM26_ip_0.MUTEN" />
- <interface name="i2s_ssm2603_0_bit_clock" internal="I2S_SSM2603_0.Bit_clock" />
- <interface name="i2s_ssm2603_0_pbclk" internal="I2S_SSM2603_0.PBCLK" />
- <interface name="i2s_ssm2603_0_reclk" internal="I2S_SSM2603_0.RECLK" />
+ <interface
+   name="i2c_ssm2603_0_i2c_clk"
+   internal="I2C_SSM2603_0.I2C_CLK"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="i2c_ssm2603_0_i2c_data"
+   internal="I2C_SSM2603_0.I2C_DATA"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="i2c_ssm2603_0_muten"
+   internal="I2C_SSM2603_0.MUTEN"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="i2s_ssm2603_0_bit_clock"
+   internal="I2S_SSM2603_0.Bit_clock"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="i2s_ssm2603_0_pbclk"
+   internal="I2S_SSM2603_0.PBCLK"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="i2s_ssm2603_0_reclk"
+   internal="I2S_SSM2603_0.RECLK"
+   type="conduit"
+   dir="end" />
  <interface
    name="i2s_ssm2603_0_serial_data_in"
-   internal="I2S_SSM2603_0.Serial_data_in" />
+   internal="I2S_SSM2603_0.Serial_data_in"
+   type="conduit"
+   dir="end" />
  <interface
    name="i2s_ssm2603_0_serial_data_out"
-   internal="I2S_SSM2603_0.Serial_data_out" />
+   internal="I2S_SSM2603_0.Serial_data_out"
+   type="conduit"
+   dir="end" />
  <interface name="memory" internal="hps_0.memory" type="conduit" dir="end" />
  <interface name="pll_0_refclk" internal="pll_0.refclk" type="clock" dir="end" />
- <module name="I2C_SSM26_ip_0" kind="I2C_SSM26_ip" version="1.0" enabled="1" />
- <module name="I2S_SSM2603_0" kind="I2S_SSM2603" version="1.0" enabled="1" />
+ <module name="I2C_SSM2603_0" kind="I2C_SSM2603" version="1.1" enabled="1" />
+ <module name="I2S_SSM2603_0" kind="I2S_SSM2603" version="1.1" enabled="1" />
  <module
    name="audio_pll_0"
    kind="altera_up_avalon_audio_pll"
@@ -857,30 +893,30 @@
    kind="avalon"
    version="16.0"
    start="hps_0.h2f_axi_master"
-   end="I2C_SSM26_ip_0.s_axi">
-  <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x00020000" />
-  <parameter name="defaultConnection" value="false" />
- </connection>
- <connection
-   kind="avalon"
-   version="16.0"
-   start="hps_0.h2f_axi_master"
    end="I2S_SSM2603_0.s_axi">
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x00010000" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
-   kind="clock"
+   kind="avalon"
    version="16.0"
-   start="pll_0.outclk0"
-   end="I2C_SSM26_ip_0.axi_clk" />
+   start="hps_0.h2f_axi_master"
+   end="I2C_SSM2603_0.s_axi">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x00020000" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
  <connection
    kind="clock"
    version="16.0"
    start="pll_0.outclk0"
    end="I2S_SSM2603_0.axi_clk" />
+ <connection
+   kind="clock"
+   version="16.0"
+   start="pll_0.outclk0"
+   end="I2C_SSM2603_0.axi_clk" />
  <connection
    kind="clock"
    version="16.0"
@@ -900,12 +936,12 @@
    kind="clock"
    version="16.0"
    start="pll_0.outclk0"
-   end="I2C_SSM26_ip_0.ip_clk" />
+   end="I2S_SSM2603_0.ip_clk" />
  <connection
    kind="clock"
    version="16.0"
    start="pll_0.outclk0"
-   end="I2S_SSM2603_0.ip_clk" />
+   end="I2C_SSM2603_0.ip_clk" />
  <connection
    kind="clock"
    version="16.0"
@@ -915,22 +951,22 @@
    kind="reset"
    version="16.0"
    start="hps_0.h2f_reset"
-   end="I2C_SSM26_ip_0.axi_reset" />
- <connection
-   kind="reset"
-   version="16.0"
-   start="hps_0.h2f_reset"
    end="I2S_SSM2603_0.axi_reset" />
  <connection
    kind="reset"
    version="16.0"
    start="hps_0.h2f_reset"
-   end="I2C_SSM26_ip_0.ip_rst" />
+   end="I2C_SSM2603_0.axi_reset" />
  <connection
    kind="reset"
    version="16.0"
    start="hps_0.h2f_reset"
    end="I2S_SSM2603_0.ip_rst" />
+ <connection
+   kind="reset"
+   version="16.0"
+   start="hps_0.h2f_reset"
+   end="I2C_SSM2603_0.ip_rst" />
  <connection
    kind="reset"
    version="16.0"
